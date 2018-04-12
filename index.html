@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Test JSON AJAX</title>
+	<style>
+		[v-cloak] {
+			display: none;
+		}
+	</style>
+</head>
+<body>
+	<h1>Test JSON and AJAX</h1>
+
+	<div id="app">
+
+		<ul>
+			<li v-cloak v-for='person in persons'>{{ person.name }}</li>
+		</ul>
+
+	</div>
+
+
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+	<script>
+		new Vue({
+			el: '#app',
+			data: {
+				persons: []
+			},
+			mounted() {
+				axios.get("data.json").then(response => this.persons = response.data);
+			}
+		});
+	</script>
+</body>
+</html>
